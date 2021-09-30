@@ -11,7 +11,6 @@ extension UIColor {
   
   static let appPrimaryColor = UIColor.init(named: "appPrimaryColor")
   static let appSecondaryColor = UIColor.init(named: "appSecondaryColor")
-  
 }
 
 

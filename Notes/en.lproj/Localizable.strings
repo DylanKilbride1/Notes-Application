@@ -8,3 +8,4 @@
 
 "home.navigation.controller.title" = "Notes";
 "home.navigation.controller.add.notes" = "Add Note";
+"edit.note.navigation.controller.title" = "Edit Note";

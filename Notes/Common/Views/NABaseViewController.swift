@@ -18,7 +18,7 @@ class NABaseViewController: UIViewController {
       }
     
     private func configureTheme() {
-      self.view.backgroundColor = UIColor.appPrimaryColor
+      self.view.backgroundColor = ApplicationColors.appPrimaryColor
     }
     
     private func configureBackButton() {

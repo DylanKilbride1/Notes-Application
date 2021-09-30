@@ -15,11 +15,18 @@ struct ViewProperties {
 }
 
 struct CellIdentifiers {
-  static let notesPreviewCellIdentifier = "NANotePreviewTableViewCell"
+  static let notesPreviewCellIdentifier = "NANotesPreviewCell"
 }
   
 struct ApplicationColors {
   static let appPrimaryColor = UIColor.init(named: "appPrimaryColor")
   static let appSecondaryColor = UIColor.init(named: "appSecondaryColor")
+  static let noteTextAreaColor = UIColor.init(named: "noteTextColor")
+
 }
+
+struct NetworkProperties {
+  static let baseUrl = "https://www.myapi.com/"
+}
+
   

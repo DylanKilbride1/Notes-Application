@@ -33,8 +33,7 @@ class NAUserNotesViewController: NABaseViewController {
   func configureTableView() {
     setTableViewDelegates()
     registerTableViewCells()
-    notesPreviewTableView.backgroundColor = UIColor.appPrimaryColor
-    notesPreviewTableView.register(NANotesPreviewCell.self, forCellReuseIdentifier: "my")
+    notesPreviewTableView.backgroundColor = ApplicationColors.appPrimaryColor
   }
   
   func setTableViewDelegates() {
@@ -43,24 +42,29 @@ class NAUserNotesViewController: NABaseViewController {
   }
   
   private func registerTableViewCells() {
-    let textFieldCell = UINib(nibName: "NANotesPreviewCell", bundle: nil)
-    self.notesPreviewTableView.register(textFieldCell, forCellReuseIdentifier: "CustomTableViewCell")
+    let textFieldCell = UINib(nibName: CellIdentifiers.notesPreviewCellIdentifier, bundle: nil)
+    self.notesPreviewTableView.register(textFieldCell,
+                                        forCellReuseIdentifier: CellIdentifiers.notesPreviewCellIdentifier)
   }
 }
-
 
 extension NAUserNotesViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as? NANotesPreviewCell {
-          return cell
+    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.notesPreviewCellIdentifier) as? NANotesPreviewCell {
+      return cell
     }
-       
+
     return UITableViewCell()
   }
       
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 10
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let editNote = NANoteEditorViewController()
+    self.navigationController?.pushViewController(editNote, animated: true)
   }
   
 }
