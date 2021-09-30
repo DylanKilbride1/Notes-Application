@@ -7,3 +7,4 @@
 */
 
 "home.navigation.controller.title" = "Notes";
+"home.navigation.controller.add.notes" = "Add Note";
