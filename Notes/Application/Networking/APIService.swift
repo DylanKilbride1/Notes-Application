@@ -9,8 +9,8 @@ import UIKit
 
 class APIService: NSObject {
   
-  let url = URL(string: "resource")!
-  var request = URLRequest(url: url)
+//  let url = URL(string: "resource")!
+//  var request = URLRequest(url: url)
   
   func getNoteById() {
     

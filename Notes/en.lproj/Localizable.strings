@@ -7,5 +7,6 @@
 */
 
 "home.navigation.controller.title" = "Notes";
+"home.no.notes.available.message" = "No Notes Created";
 "home.navigation.controller.add.notes" = "Add Note";
 "edit.note.navigation.controller.title" = "Edit Note";

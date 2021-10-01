@@ -15,8 +15,6 @@ class NANotesPreviewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     configureCellTheme()
-    notePreviewText.text = "Hello Im Dylan"
-    noteCreationDate.text = "12/12/2020"
   }
   
   private func configureCellTheme() {

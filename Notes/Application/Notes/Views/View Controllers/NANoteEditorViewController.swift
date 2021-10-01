@@ -9,13 +9,37 @@ import UIKit
 
 class NANoteEditorViewController: NABaseViewController {
   
+  var noteData: Note
+  var noteViewModel = NANoteViewModel()
   @IBOutlet weak var textEditingField: UITextView!
+  
+  
+  init(noteData: Note) {
+    self.noteData = noteData
+    
+    super.init(nibName: ViewControllers.editNotesViewController, bundle: nil)
+  }
+  
+  init() {
+    self.noteData = Note(id: UUID(), creationDateTime: Date(), noteContent: "")
+    super.init(nibName: ViewControllers.editNotesViewController, bundle: nil)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     configureTheme()
+    configureEditingField()
   }
 
+  private func configureEditingField() {
+    if let noteContent = noteData.noteContent {
+      textEditingField.text = noteContent
+    } else {
+      textEditingField.text = ""
+    }
+  }
+  
+  
   private func configureTheme() {
     view.backgroundColor = ApplicationColors.appPrimaryColor
     self.navigationController?.isNavigationBarHidden = false
@@ -28,14 +52,39 @@ class NANoteEditorViewController: NABaseViewController {
   }
   
   @objc private func cancelTapped() {
-//    if noteModel.noteContent == textEditingField.text {
-//      navigationController?.popViewController(animated: true)
-//    } else {
-//      //display lose changes alert
-//    }
+    if !hasNoteBeenEdited() {
+      navigationController?.popViewController(animated: true)
+    } else {
+      //display lose changes alert
+    }
     navigationController?.popViewController(animated: true)
   }
   
-  @objc private func doneTapped() {}
+  @objc private func doneTapped() {
+    if !hasNoteBeenEdited() {
+      navigationController?.popViewController(animated: true)
+    } else {
+      let noteUUID = UUID.init()
+      let noteContent = textEditingField.text
+      let created = Date()
+      noteViewModel.createNewNote(noteData: Note(id: noteUUID,
+                                                 creationDateTime: created,
+                                                 noteContent: noteContent))
+      navigationController?.popViewController(animated: true)
+    }
+  }
+  
+  private func hasNoteBeenEdited() -> Bool {
+    if noteData.noteContent == textEditingField.text {
+      return false
+    } else {
+      return true
+    }
+  }
+  
+  //required
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
 }

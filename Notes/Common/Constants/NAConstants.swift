@@ -25,8 +25,20 @@ struct ApplicationColors {
 
 }
 
+struct CoreDataProperties {
+  static let noteModelFileName = "NoteDataModel"
+}
+
 struct NetworkProperties {
   static let baseUrl = "https://www.myapi.com/"
+}
+
+struct DateFormats {
+  static let longDateTimeFormat = "HH:mm E, d MMM y"
+}
+
+struct ViewControllers {
+  static let editNotesViewController = "NANoteEditorViewController"
 }
 
   

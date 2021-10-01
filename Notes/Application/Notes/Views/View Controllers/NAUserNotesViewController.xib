@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NAUserNotesViewController" customModule="Notes" customModuleProvider="target">
             <connections>
+                <outlet property="noNotesLabel" destination="lsc-cY-89N" id="tzF-ec-oN8"/>
                 <outlet property="notesPreviewTableView" destination="cfh-8i-UaQ" id="ans-4h-u1j"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,6 +21,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsc-cY-89N" userLabel="No Notes">
+                    <rect key="frame" x="30" y="435" width="354" height="26.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cfh-8i-UaQ">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -28,8 +35,11 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="lsc-cY-89N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="3So-ob-atL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cfh-8i-UaQ" secondAttribute="bottom" id="8Dv-kW-QmG"/>
+                <constraint firstItem="lsc-cY-89N" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="HHR-is-p5v"/>
                 <constraint firstItem="cfh-8i-UaQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ZmP-pJ-R6v"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lsc-cY-89N" secondAttribute="trailing" constant="30" id="cxm-UT-2zn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cfh-8i-UaQ" secondAttribute="trailing" id="vV9-l1-ofr"/>
                 <constraint firstItem="cfh-8i-UaQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wUe-FZ-R6l"/>
             </constraints>
