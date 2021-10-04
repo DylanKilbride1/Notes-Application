@@ -11,7 +11,11 @@ import CoreData
 
 public class NACoreDataFunctionWrapper: NSObject {
   
-  let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  let context: NSManagedObjectContext
+  
+  init(mainContext: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    self.context = mainContext
+  }
   
   func getAllNotes() -> [NoteDataModel] {
     var notes = [NoteDataModel]()
@@ -21,6 +25,22 @@ public class NACoreDataFunctionWrapper: NSObject {
       //error
     }
     return notes
+  }
+  
+  func getNoteByID(note: Note) -> NoteDataModel? {
+    let id = note.id
+    let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "NoteDataModel")
+    let predicate = NSPredicate(format: "id = '\(id)'")
+    fetchRequest.predicate = predicate
+    do {
+      let result = try context.fetch(fetchRequest)
+      if let noteToRetrieve = result.first as? NoteDataModel {
+        return noteToRetrieve
+      }
+    } catch let error {
+      print("Failed to fetch: \(error)")
+    }
+    return nil
   }
   
   func createNote(noteToSave: Note) {

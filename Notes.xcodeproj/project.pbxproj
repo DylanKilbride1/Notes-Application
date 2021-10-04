@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5349D97F270B2FA000A6BC87 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5349D97D270B2DDB00A6BC87 /* CoreDataTestStack.swift */; };
+		5349D981270B30B600A6BC87 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5349D980270B30B600A6BC87 /* CoreDataStack.swift */; };
 		5365E9482706256E00A02366 /* NANotesPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5365E9462706256E00A02366 /* NANotesPreviewCell.swift */; };
 		5365E9492706256E00A02366 /* NANotesPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5365E9472706256E00A02366 /* NANotesPreviewCell.xib */; };
 		5365E94C270634F700A02366 /* NANoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5365E94B270634F700A02366 /* NANoteViewModel.swift */; };
@@ -28,7 +30,7 @@
 		539683CC2703213B00E5C054 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539683CB2703213B00E5C054 /* SceneDelegate.swift */; };
 		539683D32703213F00E5C054 /* Colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 539683D22703213F00E5C054 /* Colours.xcassets */; };
 		539683D62703213F00E5C054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 539683D42703213F00E5C054 /* LaunchScreen.storyboard */; };
-		539683E12703213F00E5C054 /* NotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539683E02703213F00E5C054 /* NotesTests.swift */; };
+		539683E12703213F00E5C054 /* NotesCoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539683E02703213F00E5C054 /* NotesCoreDataTests.swift */; };
 		539683EB2703213F00E5C054 /* NotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539683EA2703213F00E5C054 /* NotesUITests.swift */; };
 		539683ED2703213F00E5C054 /* NotesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539683EC2703213F00E5C054 /* NotesUITestsLaunchTests.swift */; };
 		53AA74222704AF9B00A26B1C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53AA74242704AF9B00A26B1C /* Localizable.strings */; };
@@ -60,6 +62,8 @@
 /* Begin PBXFileReference section */
 		0AD0E4A3C9AC52F514739EE6 /* Pods_Notes_NotesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notes_NotesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B91A52819B9C366D9A2BE0D /* Pods_Notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5349D97D270B2DDB00A6BC87 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
+		5349D980270B30B600A6BC87 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5365E9462706256E00A02366 /* NANotesPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANotesPreviewCell.swift; sourceTree = "<group>"; };
 		5365E9472706256E00A02366 /* NANotesPreviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NANotesPreviewCell.xib; sourceTree = "<group>"; };
 		5365E94B270634F700A02366 /* NANoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANoteViewModel.swift; sourceTree = "<group>"; };
@@ -84,7 +88,7 @@
 		539683D52703213F00E5C054 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		539683D72703213F00E5C054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		539683DC2703213F00E5C054 /* NotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		539683E02703213F00E5C054 /* NotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTests.swift; sourceTree = "<group>"; };
+		539683E02703213F00E5C054 /* NotesCoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCoreDataTests.swift; sourceTree = "<group>"; };
 		539683E62703213F00E5C054 /* NotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		539683EA2703213F00E5C054 /* NotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesUITests.swift; sourceTree = "<group>"; };
 		539683EC2703213F00E5C054 /* NotesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				5365E95F270716FB00A02366 /* NoteDataModel+CoreDataClass.swift */,
 				5365E960270716FB00A02366 /* NoteDataModel+CoreDataProperties.swift */,
 				53E5B7FC2707212F00B92476 /* NACoreDataFunctionWrapper.swift */,
+				5349D980270B30B600A6BC87 /* CoreDataStack.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -297,7 +302,8 @@
 		539683DF2703213F00E5C054 /* NotesTests */ = {
 			isa = PBXGroup;
 			children = (
-				539683E02703213F00E5C054 /* NotesTests.swift */,
+				539683E02703213F00E5C054 /* NotesCoreDataTests.swift */,
+				5349D97D270B2DDB00A6BC87 /* CoreDataTestStack.swift */,
 			);
 			path = NotesTests;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				53705A7F27033F690030F17A /* NAConstants.swift in Sources */,
 				53705A7A270337460030F17A /* NABaseNavigationController.swift in Sources */,
 				53705A74270336C50030F17A /* NABaseView.swift in Sources */,
+				5349D981270B30B600A6BC87 /* CoreDataStack.swift in Sources */,
 				53E5B7FD2707212F00B92476 /* NACoreDataFunctionWrapper.swift in Sources */,
 				5365E9482706256E00A02366 /* NANotesPreviewCell.swift in Sources */,
 				5365E94C270634F700A02366 /* NANoteViewModel.swift in Sources */,
@@ -588,7 +595,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				539683E12703213F00E5C054 /* NotesTests.swift in Sources */,
+				539683E12703213F00E5C054 /* NotesCoreDataTests.swift in Sources */,
+				5349D97F270B2FA000A6BC87 /* CoreDataTestStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
