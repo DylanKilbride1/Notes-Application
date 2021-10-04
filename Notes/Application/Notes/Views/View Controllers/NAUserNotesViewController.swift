@@ -36,6 +36,7 @@ class NAUserNotesViewController: NABaseViewController {
   
   private func populateNotesArray() {
     existingNotes = noteViewModel.retrieveAllNotes()
+    existingNotes = existingNotes.sorted(by: { $0.creationDateTime.compare($1.creationDateTime) == .orderedDescending })
     existingNotes.count == 0 ? displayNoNotesMessage() : showTableView()
     notesPreviewTableView.reloadData()
   }
@@ -59,6 +60,7 @@ class NAUserNotesViewController: NABaseViewController {
     setTableViewDelegates()
     registerTableViewCells()
     notesPreviewTableView.backgroundColor = ApplicationColors.appPrimaryColor
+    notesPreviewTableView.separatorColor = UIColor.clear
   }
   
   func setTableViewDelegates() {
@@ -91,9 +93,19 @@ extension NAUserNotesViewController: UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let editNote = NANoteEditorViewController()
+    let editNote = NANoteEditorViewController(noteData: existingNotes[indexPath.row])
     self.navigationController?.pushViewController(editNote, animated: true)
     //noteViewModel.noteInUse = existingNotes[indexPath.row].noteContent
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      noteViewModel.deleteExistingNote(noteToDelete: existingNotes[indexPath.row])
+      existingNotes.remove(at: indexPath.row)
+      tableView.deleteRows(at: [indexPath], with: .fade)
+    } else if editingStyle == .insert {
+      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
   }
   
 }

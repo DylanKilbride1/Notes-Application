@@ -10,12 +10,14 @@ import UIKit
 class NANoteEditorViewController: NABaseViewController {
   
   var noteData: Note
+  var isExistingNote = false
   var noteViewModel = NANoteViewModel()
   @IBOutlet weak var textEditingField: UITextView!
   
-  
   init(noteData: Note) {
     self.noteData = noteData
+    
+    isExistingNote = true
     
     super.init(nibName: ViewControllers.editNotesViewController, bundle: nil)
   }
@@ -64,13 +66,19 @@ class NANoteEditorViewController: NABaseViewController {
     if !hasNoteBeenEdited() {
       navigationController?.popViewController(animated: true)
     } else {
-      let noteUUID = UUID.init()
-      let noteContent = textEditingField.text
-      let created = Date()
-      noteViewModel.createNewNote(noteData: Note(id: noteUUID,
-                                                 creationDateTime: created,
-                                                 noteContent: noteContent))
-      navigationController?.popViewController(animated: true)
+      if isExistingNote {
+        noteViewModel.updateExistingNote(noteToUpdate: noteData,
+                                         updatedContent: textEditingField.text)
+        navigationController?.popViewController(animated: true)
+      } else {
+        let noteUUID = UUID.init()
+        let noteContent = textEditingField.text
+        let created = Date()
+        noteViewModel.createNewNote(noteData: Note(id: noteUUID,
+                                                   creationDateTime: created,
+                                                   noteContent: noteContent))
+        navigationController?.popViewController(animated: true)
+      }
     }
   }
   

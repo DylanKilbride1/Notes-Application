@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 public class NACoreDataFunctionWrapper: NSObject {
   
@@ -22,9 +23,6 @@ public class NACoreDataFunctionWrapper: NSObject {
     return notes
   }
   
-  func getNoteByID() {
-  }
-  
   func createNote(noteToSave: Note) {
     let newNote = NoteDataModel(context: context)
     newNote.id = noteToSave.id
@@ -38,24 +36,55 @@ public class NACoreDataFunctionWrapper: NSObject {
     }
   }
   
-  func updateNote(noteToUpdate: NoteDataModel, updatedContent: String) {
-    noteToUpdate.noteContent = updatedContent
-    
+  func updateNote(noteToUpdate: Note, updatedContent: String) {
+
+    let id = noteToUpdate.id
+    let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "NoteDataModel")
+    let predicate = NSPredicate(format: "id = '\(id)'")
+    fetchRequest.predicate = predicate
     do {
-      try context.save()
+      let result = try context.fetch(fetchRequest)
+      if let objectToUpdate = result.first as? NSManagedObject {
+        objectToUpdate.setValue(updatedContent, forKey: "noteContent")
+        try context.save()
+      }
     } catch {
-      //errors
+      print(error)
     }
   }
   
-  func deleteNote(noteToDelete: NoteDataModel) {
-    context.delete(noteToDelete)
-    
+  func deleteNote(noteToDelete: Note) {
+    let id = noteToDelete.id
+    let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "NoteDataModel")
+    let predicate = NSPredicate(format: "id = '\(id)'")
+    fetchRequest.predicate = predicate
     do {
-      try context.save()
+      let result = try context.fetch(fetchRequest)
+      if let objectToDelete = result.first as? NSManagedObject {
+        context.delete(objectToDelete)
+        try context.save()
+      }
     } catch {
-      //errors
+      print(error)
     }
+    
+    
+//    let noteDataModel = transformNoteToNoteDataModel(noteToTransform: noteToDelete)
+//    context.delete(noteDataModel)
+//
+//    do {
+//      try context.save()
+//    } catch {
+//      print("Deletion error")
+//    }
+  }
+  
+  func transformNoteToNoteDataModel(noteToTransform: Note) -> NoteDataModel {
+    let noteDataModel = NoteDataModel(context: context)
+    noteDataModel.id = noteToTransform.id
+    noteDataModel.noteContent = noteToTransform.noteContent
+    noteDataModel.creationDateTime = noteToTransform.creationDateTime
+    return noteDataModel
   }
   
 }

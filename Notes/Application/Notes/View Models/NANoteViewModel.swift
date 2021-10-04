@@ -24,21 +24,23 @@ class NANoteViewModel: NSObject {
     coreDataWrapper.createNote(noteToSave: noteData)
   }
   
-  public func updateExistingNote() {
-    
+  public func updateExistingNote(noteToUpdate: Note, updatedContent: String) {
+    coreDataWrapper.updateNote(noteToUpdate: noteToUpdate,
+                               updatedContent: updatedContent ?? "")
   }
   
-  public func deleteExistingNote() {
-    
+  public func deleteExistingNote(noteToDelete: Note) {
+    coreDataWrapper.deleteNote(noteToDelete: noteToDelete)
   }
   
   public func retrieveAllNotes() -> [Note] {
     return transformCoreDataModelsToNoteModels(noteDataModels: coreDataWrapper.getAllNotes())
   }
   
-  public func retrieveNoteByUUID() {
-    //TODO
-  }
+  //Not needed
+//  public func retrieveNoteByUUID() {
+//
+//  }
   
   private func transformCoreDataModelsToNoteModels(noteDataModels: [NoteDataModel]) -> [Note] {
     var noteModels = [Note]()
