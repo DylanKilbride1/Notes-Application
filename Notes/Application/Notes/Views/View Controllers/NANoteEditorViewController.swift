@@ -76,7 +76,7 @@ class NANoteEditorViewController: NABaseViewController {
         let created = Date()
         noteViewModel.createNewNote(noteData: Note(id: noteUUID,
                                                    creationDateTime: created,
-                                                   noteContent: noteContent))
+                                                   noteContent: noteContent ?? ""))
         navigationController?.popViewController(animated: true)
       }
     }
