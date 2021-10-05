@@ -1,0 +1,30 @@
+Question 2 - I'd add an endpoint to the notes which allows a user to update/edit a particular note. It was a logical method to add since the user already had the ability to get all/get by id/create/delete notes.
+
+I would make this method a PATCH method, as patching is used to update a portion of the resource rather than replacing the entire resource which could cause some unexpected issues server side. An example URL for this endpoint could be: www.notes-server.com/notes/note/editNote/{id}
+
+A payload returned from this endpoint could just be a simple success/failure boolean e.g:
+
+{
+  "success": true
+}
+
+----- EXAMPLE CONTROLLER W/ PATCH METHOD (Assuming MicroService is built using Java & SpringBoot) ------
+
+@RestController
+@RequestMapping(value = "/notes")
+public class NotesController {
+
+	@Autowired
+	NotesService notesService;
+ 
+ @RequestMapping(value = "/note/editNote/{noteUuid}",
+					method = RequestMethod.PATCH,
+					produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Map<String, boolean> updateNoteContent(@PathVariable("noteUuid") UUID noteUuid,
+	                                                  @RequestBody Note noteToBeUpdated){
+		return notesService.updateNotesContent(noteUuid, noteToBeUpdated);
+	}
+}
+ 
+ 

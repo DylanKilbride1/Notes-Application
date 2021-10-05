@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5349D97F270B2FA000A6BC87 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5349D97D270B2DDB00A6BC87 /* CoreDataTestStack.swift */; };
 		5349D981270B30B600A6BC87 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5349D980270B30B600A6BC87 /* CoreDataStack.swift */; };
+		5349D983270CB4B600A6BC87 /* Example-API-Controller-Method in Resources */ = {isa = PBXBuildFile; fileRef = 5349D982270CB4B600A6BC87 /* Example-API-Controller-Method */; };
 		5365E9482706256E00A02366 /* NANotesPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5365E9462706256E00A02366 /* NANotesPreviewCell.swift */; };
 		5365E9492706256E00A02366 /* NANotesPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5365E9472706256E00A02366 /* NANotesPreviewCell.xib */; };
 		5365E94C270634F700A02366 /* NANoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5365E94B270634F700A02366 /* NANoteViewModel.swift */; };
@@ -64,6 +65,7 @@
 		2B91A52819B9C366D9A2BE0D /* Pods_Notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5349D97D270B2DDB00A6BC87 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
 		5349D980270B30B600A6BC87 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		5349D982270CB4B600A6BC87 /* Example-API-Controller-Method */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Example-API-Controller-Method"; sourceTree = "<group>"; };
 		5365E9462706256E00A02366 /* NANotesPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANotesPreviewCell.swift; sourceTree = "<group>"; };
 		5365E9472706256E00A02366 /* NANotesPreviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NANotesPreviewCell.xib; sourceTree = "<group>"; };
 		5365E94B270634F700A02366 /* NANoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANoteViewModel.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				539683D72703213F00E5C054 /* Info.plist */,
 				53AA74242704AF9B00A26B1C /* Localizable.strings */,
 				5365E95527064A4E00A02366 /* notes.json */,
+				5349D982270CB4B600A6BC87 /* Example-API-Controller-Method */,
 				5365E95827064E8000A02366 /* NoteDataModel.xcdatamodeld */,
 			);
 			path = Notes;
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5365E95627064A4E00A02366 /* notes.json in Resources */,
+				5349D983270CB4B600A6BC87 /* Example-API-Controller-Method in Resources */,
 				53AA74222704AF9B00A26B1C /* Localizable.strings in Resources */,
 				53705A892703461C0030F17A /* NAUserNotesViewController.xib in Resources */,
 				539683D62703213F00E5C054 /* LaunchScreen.storyboard in Resources */,
