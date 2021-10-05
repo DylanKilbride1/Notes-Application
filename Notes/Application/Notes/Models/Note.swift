@@ -21,11 +21,16 @@ struct NotesData: Decodable, Encodable {
     count = try container.decode(Int.self, forKey: .count)
     notes = try container.decode(Array.self, forKey: .notes)
   }
+  
+  init(count: Int, notes: [Note]) {
+    self.count = count
+    self.notes = notes
+  }
 }
 
 
 
-struct Note: Decodable, Encodable {
+struct Note: Decodable, Encodable, Hashable, Equatable {
   var id: UUID
   var creationDateTime: Date
   var noteContent: String?

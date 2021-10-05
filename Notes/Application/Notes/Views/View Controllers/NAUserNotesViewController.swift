@@ -35,8 +35,9 @@ class NAUserNotesViewController: NABaseViewController {
   }
   
   private func populateNotesArray() {
-    existingNotes = noteViewModel.retrieveAllNotes(remoteRetreiveCompletion: { (remoteNotes) in
-      //merge local w/ remote notes
+    existingNotes = noteViewModel.retrieveAllNotes(remoteRetreiveCompletion: { (allNotes) in
+      self.existingNotes = allNotes
+      self.notesPreviewTableView.reloadData()
     })
     existingNotes = existingNotes.sorted(by: { $0.creationDateTime.compare($1.creationDateTime) == .orderedDescending })
     existingNotes.count == 0 ? displayNoNotesMessage() : showTableView()

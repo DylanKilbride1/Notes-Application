@@ -53,8 +53,9 @@ class NANoteViewModel: NSObject {
     apiService.fetchNotes(completion: { (success, notes) in
       self.apiNotesData = notes
       if let remoteNotes = self.apiNotesData {
-        remoteRetreiveCompletion(remoteNotes.notes)
-        //Callback to update user
+        
+        remoteRetreiveCompletion(self.mergeAndSortRemoteWithLocalNotes(localNotes: localNotes,
+                                                                  remoteNotes: remoteNotes.notes))
       }
     })
     return localNotes
@@ -71,5 +72,23 @@ class NANoteViewModel: NSObject {
     }
     return noteModels
   }
+  
+  private func mergeAndSortRemoteWithLocalNotes(localNotes: [Note], remoteNotes: [Note]) -> [Note] {
+    let allNotes = [localNotes, remoteNotes].flatMap { $0 }
+    let uniqueNotes = allNotes.removingDuplicates(byKey: { $0.id })
+    return uniqueNotes.sorted(by: { $0.creationDateTime.compare($1.creationDateTime) == .orderedDescending })
+  }
+}
 
+extension Array {
+  func removingDuplicates<T: Hashable>(byKey key: (Element) -> T)  -> [Element] {
+    var result = [Element]()
+    var seen = Set<T>()
+    for value in self {
+      if seen.insert(key(value)).inserted {
+        result.append(value)
+      }
+    }
+    return result
+  }
 }

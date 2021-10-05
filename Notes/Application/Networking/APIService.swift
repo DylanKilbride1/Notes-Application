@@ -14,7 +14,7 @@ protocol APIService {
   func editNote(editedNote: Note, completion: @escaping (Bool) -> Void)
   func deleteNote(noteToDelete: Note, completion: @escaping (Bool) -> Void)
     
-  }
+}
 
 final class ApiClient: APIService {
   
@@ -38,8 +38,15 @@ final class ApiClient: APIService {
 
 final class MockApiClient: APIService {
   
-  private static let timeDelay = 5 //Can replicate a slow internet connection
+  enum MockHTTPOperation {
+    case create
+    case delete
+    case edit
+  }
+  
+  private static let timeDelay = 0 //Can replicate a slow internet connection
   private static let filePath = "notes"
+  private var notesData = NotesData(count: 0, notes: [Note]())
   
   func fetchNotes(completion: @escaping (Bool, NotesData?) -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(MockApiClient.timeDelay)) {
@@ -62,21 +69,27 @@ final class MockApiClient: APIService {
   
   func createNote(noteToCreate: Note, completion: @escaping (Bool) -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(MockApiClient.timeDelay)) {
-      let success = self.writeToFile(path: MockApiClient.filePath, objectToWrite: noteToCreate)
+      let success = self.writeToFile(path: MockApiClient.filePath,
+                                     objectToWrite: noteToCreate,
+                                     operation: .create)
       success ? completion(true) : completion(false)
     }
   }
   
   func editNote(editedNote: Note, completion: @escaping (Bool) -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(MockApiClient.timeDelay)) {
-      let success = self.writeToFile(path: MockApiClient.filePath, objectToWrite: editedNote)
+      let success = self.writeToFile(path: MockApiClient.filePath,
+                                     objectToWrite: editedNote,
+                                     operation: .edit)
       success ? completion(true) : completion(false)
     }
   }
   
   func deleteNote(noteToDelete: Note, completion: @escaping (Bool) -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(MockApiClient.timeDelay)) {
-      let success = self.writeToFile(path: MockApiClient.filePath, objectToWrite: noteToDelete)
+      let success = self.writeToFile(path: MockApiClient.filePath,
+                                     objectToWrite: noteToDelete,
+                                     operation: .delete)
       success ? completion(true) : completion(false)
     }
   }
@@ -94,12 +107,28 @@ final class MockApiClient: APIService {
     }
   }
   
-  private func writeToFile(path: String, objectToWrite: Note) -> Bool {
+  private func writeToFile(path: String,
+                           objectToWrite: Note,
+                           operation: MockHTTPOperation) -> Bool {
+    
+    switch operation {
+      case .create:
+        notesData.notes.append(objectToWrite)
+      case .delete:
+        if let index = notesData.notes.firstIndex(where: {$0.id == objectToWrite.id}) {
+          notesData.notes.remove(at: index)
+        }
+      case .edit:
+        if let index = notesData.notes.firstIndex(where: {$0.id == objectToWrite.id}) {
+          notesData.notes[index].noteContent = objectToWrite.noteContent
+        }
+    }
+    
     if let fileUrl = Bundle.main.url(forResource: path, withExtension: "json") {
       do {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        let JsonData = try encoder.encode(objectToWrite)
+        let JsonData = try encoder.encode(notesData)
         try JsonData.write(to: fileUrl)
         return true
       } catch {
